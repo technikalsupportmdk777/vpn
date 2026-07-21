@@ -149,6 +149,58 @@
         ::-webkit-scrollbar-track { background: #111; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
         
+        .mini-app {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99;
+            width: calc(100% - 32px);
+            max-width: 440px;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid #2a2a2a;
+            border-radius: 18px;
+            padding: 12px 16px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .mini-app .mini-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+        .mini-app .mini-icon {
+            font-size: 24px;
+            filter: grayscale(1) brightness(0.8);
+        }
+        .mini-app .mini-text {
+            font-size: 11px;
+            color: #888;
+            line-height: 1.3;
+        }
+        .mini-app .mini-text strong {
+            color: #fff;
+            font-weight: 600;
+        }
+        .mini-app .mini-close {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .mini-app .mini-close:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        
         .bot-btn {
             background: rgba(255,255,255,0.03);
             border: 1px solid #2a2a2a;
@@ -230,7 +282,7 @@
                     <p class="text-[#555] text-sm mt-3 max-w-xs mx-auto">Анонимность. Обход блокировок. Скорость.</p>
                     <div class="flex flex-wrap justify-center gap-3 mt-6">
                         <button @click="currentPage = 'tariffs'" class="bg-white text-black px-8 py-3 rounded-xl font-bold text-sm hover:bg-gray-200 transition">🚀 Подключиться</button>
-                        <button @click="currentPage = 'tariffs'" class="border border-[#2a2a2a] px-6 py-3 rounded-xl text-sm text-[#777] hover:border-[#444] transition">🎁 2 дня бесплатно</button>
+                        <button @click="activateTrial" class="border border-[#2a2a2a] px-6 py-3 rounded-xl text-sm text-[#777] hover:border-[#444] transition">🎁 2 дня бесплатно</button>
                     </div>
                     <div class="flex justify-center gap-6 mt-6 text-[10px] text-[#444]">
                         <span>✓ No-Logs</span><span>✓ 256-bit</span><span>✓ Обход DPI</span>
@@ -256,13 +308,14 @@
             </div>
 
             <div v-if="currentPage === 'tariffs'">
-                <h2 class="text-xl font-bold mb-4 text-white">Тарифы</h2>
+                <h2 class="text-xl font-bold mb-4 text-white">💎 Тарифы</h2>
                 <div class="space-y-3">
                     <div v-for="plan in tariffs" :key="plan.id" class="card p-4 flex items-center justify-between hover:border-[#333] transition">
                         <div>
                             <div class="font-semibold text-sm text-white">{{ plan.name }}</div>
                             <div class="text-[11px] text-[#555]">{{ plan.period }}</div>
                             <div class="text-[10px] text-[#444] mt-1">{{ plan.features.join(' • ') }}</div>
+                            <div v-if="plan.bonus" class="text-[9px] text-emerald-500 mt-0.5">🔥 {{ plan.bonus }}</div>
                         </div>
                         <div class="text-right">
                             <div class="text-lg font-bold text-white">{{ plan.price }} <span class="text-xs font-normal text-[#555]">₽</span></div>
@@ -271,7 +324,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-[10px] text-[#444] text-center mt-4">Макс. 2 устройства на аккаунт</div>
+                <div class="text-[10px] text-[#444] text-center mt-4">📱 Макс. 2 устройства на аккаунт</div>
                 <legal-footer></legal-footer>
             </div>
 
@@ -300,15 +353,42 @@
                         <div><h2 class="text-xl font-bold text-white">{{ user.name }}</h2><span class="text-[11px] text-[#555]">Подписка: {{ user.subscription || 'Нет' }}</span></div>
                     </div>
                     <div class="grid grid-cols-2 gap-3 mt-5">
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">Кошелек</span><br><span class="text-lg font-bold text-white">{{ user.balance }} ₽</span></div>
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">Устройств</span><br><span class="text-lg font-bold text-white">{{ user.devices }}/2</span></div>
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">Дней</span><br><span class="text-lg font-bold text-white">{{ user.daysLeft }}</span></div>
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">Рефералов</span><br><span class="text-lg font-bold text-white">{{ user.referrals }}</span></div>
+                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">💰 Кошелек</span><br><span class="text-lg font-bold text-white">{{ user.balance }} ₽</span></div>
+                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">📱 Устройств</span><br><span class="text-lg font-bold text-white">{{ user.devices }}/2</span></div>
+                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">📅 Дней</span><br><span class="text-lg font-bold text-white">{{ user.daysLeft }}</span></div>
+                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">🤝 Рефералов</span><br><span class="text-lg font-bold text-white">{{ user.referrals }}</span></div>
                     </div>
-                    <button @click="logout" class="mt-4 bg-[#1a1a1a] text-[#666] px-5 py-2 rounded-xl text-sm hover:bg-[#222] transition border border-[#2a2a2a]">Выйти</button>
+                    <div class="flex gap-3 mt-4">
+                        <button @click="showDeposit = !showDeposit" class="flex-1 bg-[#1a1a1a] text-white px-4 py-2 rounded-xl text-sm hover:bg-[#222] transition border border-[#2a2a2a]">💰 Пополнить</button>
+                        <button @click="logout" class="flex-1 bg-[#1a1a1a] text-[#666] px-4 py-2 rounded-xl text-sm hover:bg-[#222] transition border border-[#2a2a2a]">🚪 Выйти</button>
+                    </div>
+                    
+                    <!-- Пополнение -->
+                    <div v-if="showDeposit" class="mt-4 p-4 bg-[#0d0d0d] rounded-xl border border-[#1a1a1a]">
+                        <p class="text-xs text-[#555] mb-3">Выберите сумму пополнения (от 6 до 5000 ₽):</p>
+                        <div class="flex flex-wrap gap-2">
+                            <button v-for="amount in [6,50,100,250,500,1000,2500,5000]" @click="deposit(amount)" class="bg-[#1a1a1a] hover:bg-[#222] px-3 py-1.5 rounded-lg text-xs text-white border border-[#2a2a2a] transition">{{ amount }}₽</button>
+                        </div>
+                        <div class="mt-3 flex gap-2">
+                            <input type="number" v-model="customAmount" placeholder="Своя сумма" class="flex-1 bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-3 py-1.5 text-xs text-white outline-none focus:border-[#444]">
+                            <button @click="depositCustom" class="bg-[#1a1a1a] hover:bg-[#222] px-4 py-1.5 rounded-lg text-xs text-white border border-[#2a2a2a] transition">Пополнить</button>
+                        </div>
+                    </div>
                 </div>
                 <legal-footer></legal-footer>
             </div>
+        </div>
+
+        <!-- MINI-APP (Telegram Mini App) -->
+        <div class="mini-app" v-if="showMiniApp">
+            <div class="mini-content">
+                <span class="mini-icon">🌊</span>
+                <div class="mini-text">
+                    <strong>MAUE Pulse</strong><br>
+                    <span>Анонимный VPN • {{ user.daysLeft }} дней</span>
+                </div>
+            </div>
+            <button class="mini-close" @click="showMiniApp = false">✕</button>
         </div>
 
         <div class="mt-6">
@@ -365,7 +445,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
     <script>
-        const { createApp, ref, reactive } = Vue;
+        const { createApp, ref, reactive, watch } = Vue;
 
         const LegalFooter = {
             template: `
@@ -386,6 +466,9 @@
             setup() {
                 const currentPage = ref('home');
                 const showPaymentModal = ref(false);
+                const showMiniApp = ref(true);
+                const showDeposit = ref(false);
+                const customAmount = ref('');
                 const selectedPlan = ref(null);
 
                 const user = reactive({
@@ -399,11 +482,11 @@
                 });
 
                 const tariffs = ref([
-                    { id: 1, name: 'День', price: '6', period: 'Сутки', features: ['2 устройства', '100 Мбит', 'Обход DPI'], trial: false },
-                    { id: 2, name: 'Месяц', price: '87', period: '30 дней', features: ['2 устройства', '500 Мбит', 'Безлимит'], trial: true },
-                    { id: 3, name: '3 Месяца', price: '220', period: '90 дней', features: ['2 устройства', '1 Гбит', 'Приоритет'], trial: false },
-                    { id: 4, name: '6 Месяцев', price: '480', period: '180 дней', features: ['2 устройства', '1 Гбит', 'Приоритет'], trial: false },
-                    { id: 5, name: 'Год', price: '996', period: '365 дней', features: ['2 устройства', 'Макс. скорость', 'VIP'], trial: false },
+                    { id: 1, name: '🌙 Сутки', price: '6', period: '1 день', features: ['2 устройства', '100 Мбит', 'Обход DPI'], trial: false, bonus: null },
+                    { id: 2, name: '📅 Месяц', price: '87', period: '30 дней', features: ['2 устройства', '500 Мбит', 'Безлимит'], trial: true, bonus: '+2 дня' },
+                    { id: 3, name: '📆 3 месяца', price: '220', period: '90 дней', features: ['2 устройства', '1 Гбит', 'Приоритет'], trial: false, bonus: null },
+                    { id: 4, name: '🗓 6 месяцев', price: '480', period: '180 дней', features: ['2 устройства', '1 Гбит', 'Приоритет'], trial: false, bonus: null },
+                    { id: 5, name: '🌟 Год', price: '996', period: '365 дней', features: ['2 устройства', 'Макс. скорость', 'VIP'], trial: false, bonus: '🔥' },
                 ]);
 
                 const blockedUsers = ref(['user_42', 'spammer_007']);
@@ -419,12 +502,42 @@
 
                 function confirmPayment() {
                     if (!selectedPlan.value) return;
+                    let bonusDays = 0;
+                    if (selectedPlan.value.trial) bonusDays += 2;
+                    if (user.daysLeft === 0) bonusDays += 5; // первая покупка
                     user.balance -= parseInt(selectedPlan.value.price);
-                    user.daysLeft += selectedPlan.value.id === 1 ? 1 : selectedPlan.value.id === 2 ? 30 : selectedPlan.value.id === 3 ? 90 : selectedPlan.value.id === 4 ? 180 : 365;
+                    user.daysLeft += parseInt(selectedPlan.value.period.split(' ')[0]) + bonusDays;
                     user.subscription = selectedPlan.value.name;
                     user.devices = 2;
-                    alert(`✅ Тариф "${selectedPlan.value.name}" активирован!`);
+                    alert(`✅ Тариф "${selectedPlan.value.name}" активирован!\n🎁 Бонус: +${bonusDays} дней`);
                     showPaymentModal.value = false;
+                }
+
+                function activateTrial() {
+                    if (user.daysLeft > 0) {
+                        alert('❌ У вас уже есть активная подписка');
+                        return;
+                    }
+                    user.daysLeft = 2;
+                    user.subscription = 'Пробный';
+                    user.devices = 1;
+                    alert('🎁 Пробный период на 2 дня активирован!');
+                }
+
+                function deposit(amount) {
+                    user.balance += amount;
+                    alert(`💰 Баланс пополнен на ${amount} ₽`);
+                    showDeposit.value = false;
+                }
+
+                function depositCustom() {
+                    const amount = parseInt(customAmount.value);
+                    if (isNaN(amount) || amount < 6 || amount > 5000) {
+                        alert('❌ Введите сумму от 6 до 5000 ₽');
+                        return;
+                    }
+                    deposit(amount);
+                    customAmount.value = '';
                 }
 
                 function copyRef() {
@@ -460,12 +573,18 @@
                 return {
                     currentPage,
                     showPaymentModal,
+                    showMiniApp,
+                    showDeposit,
+                    customAmount,
                     selectedPlan,
                     user,
                     tariffs,
                     blockedUsers,
                     buyPlan,
                     confirmPayment,
+                    activateTrial,
+                    deposit,
+                    depositCustom,
                     copyRef,
                     withdrawFunds,
                     blockRandomUser,
