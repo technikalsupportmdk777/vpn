@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MAUE Pulse — Анонимный VPN</title>
+    <title>VUME Labs — Анонимный VPN</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -17,17 +17,13 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: 
-                linear-gradient(rgba(30, 30, 30, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(30, 30, 30, 0.3) 1px, transparent 1px);
+            background: linear-gradient(rgba(30, 30, 30, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 30, 30, 0.3) 1px, transparent 1px);
             background-size: 40px 40px;
             animation: gridMove 20s linear infinite;
             pointer-events: none;
         }
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(40px, 40px); }
-        }
+        @keyframes gridMove { 0% { transform: translate(0,0); } 100% { transform: translate(40px,40px); } }
+        
         .bg-glow {
             position: fixed;
             top: -50%;
@@ -35,15 +31,12 @@
             width: 200%;
             height: 200%;
             z-index: 0;
-            background: radial-gradient(ellipse at 30% 40%, rgba(100, 100, 255, 0.04) 0%, transparent 60%),
-                        radial-gradient(ellipse at 70% 60%, rgba(200, 100, 255, 0.03) 0%, transparent 50%);
+            background: radial-gradient(ellipse at 30% 40%, rgba(100,100,255,0.04) 0%, transparent 60%), radial-gradient(ellipse at 70% 60%, rgba(200,100,255,0.03) 0%, transparent 50%);
             animation: pulseGlow 8s ease-in-out infinite alternate;
             pointer-events: none;
         }
-        @keyframes pulseGlow {
-            0% { transform: scale(1) rotate(0deg); opacity: 0.6; }
-            100% { transform: scale(1.1) rotate(3deg); opacity: 1; }
-        }
+        @keyframes pulseGlow { 0% { transform: scale(1) rotate(0deg); opacity:0.6; } 100% { transform: scale(1.1) rotate(3deg); opacity:1; } }
+        
         .floating-codes {
             position: fixed;
             z-index: 0;
@@ -54,12 +47,7 @@
             white-space: nowrap;
             animation: floatCode 60s linear infinite;
         }
-        @keyframes floatCode {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(5deg); opacity: 0; }
-        }
+        @keyframes floatCode { 0% { transform: translateY(100vh) rotate(0deg); opacity:0; } 10% { opacity:1; } 90% { opacity:1; } 100% { transform: translateY(-100vh) rotate(5deg); opacity:0; } }
         
         .app-container {
             position: relative;
@@ -70,13 +58,7 @@
             min-height: 100vh;
         }
         
-        .card {
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid #2a2a2a;
-            border-radius: 16px;
-            backdrop-filter: blur(12px);
-            transition: border-color 0.3s;
-        }
+        .card { background: rgba(20,20,20,0.8); border: 1px solid #2a2a2a; border-radius: 16px; backdrop-filter: blur(12px); transition: border-color 0.3s; }
         .card:hover { border-color: #3a3a3a; }
         
         .bottom-nav {
@@ -87,7 +69,7 @@
             z-index: 100;
             width: calc(100% - 32px);
             max-width: 440px;
-            background: rgba(18, 18, 18, 0.95);
+            background: rgba(18,18,18,0.95);
             backdrop-filter: blur(20px);
             border: 1px solid #2a2a2a;
             border-radius: 18px;
@@ -114,33 +96,15 @@
             flex: 1;
             max-width: 70px;
         }
-        .bottom-nav button .icon {
-            font-size: 22px;
-            line-height: 1;
-            filter: grayscale(1) brightness(0.7);
-            transition: all 0.3s;
-        }
-        .bottom-nav button .label {
-            font-size: 9px;
-            opacity: 0.5;
-            color: #666;
-            transition: all 0.3s;
-        }
-        .bottom-nav button.active {
-            color: #fff;
-        }
-        .bottom-nav button.active .icon {
-            filter: grayscale(0) brightness(1.2);
-            text-shadow: 0 0 30px rgba(180, 180, 180, 0.15);
-        }
-        .bottom-nav button.active .label {
-            opacity: 1;
-            color: #ccc;
-        }
+        .bottom-nav button .icon { font-size: 22px; line-height: 1; filter: grayscale(1) brightness(0.7); transition: all 0.3s; }
+        .bottom-nav button .label { font-size: 9px; opacity: 0.5; color: #666; transition: all 0.3s; }
+        .bottom-nav button.active { color: #fff; }
+        .bottom-nav button.active .icon { filter: grayscale(0) brightness(1.2); text-shadow: 0 0 30px rgba(180,180,180,0.15); }
+        .bottom-nav button.active .label { opacity: 1; color: #ccc; }
         .bottom-nav button:active { transform: scale(0.92); }
         
         .status-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; margin-right: 6px; }
-        .status-online { background: #4ade80; box-shadow: 0 0 12px rgba(74, 222, 128, 0.3); }
+        .status-online { background: #4ade80; box-shadow: 0 0 12px rgba(74,222,128,0.3); }
         
         .fade-in { animation: fadeUp 0.5s ease-out; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
@@ -157,7 +121,7 @@
             z-index: 99;
             width: calc(100% - 32px);
             max-width: 440px;
-            background: rgba(18, 18, 18, 0.95);
+            background: rgba(18,18,18,0.95);
             backdrop-filter: blur(20px);
             border: 1px solid #2a2a2a;
             border-radius: 18px;
@@ -167,88 +131,46 @@
             align-items: center;
             justify-content: space-between;
         }
-        .mini-app .mini-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-        }
-        .mini-app .mini-icon {
-            font-size: 24px;
-            filter: grayscale(1) brightness(0.8);
-        }
-        .mini-app .mini-text {
-            font-size: 11px;
-            color: #888;
-            line-height: 1.3;
-        }
-        .mini-app .mini-text strong {
-            color: #fff;
-            font-weight: 600;
-        }
-        .mini-app .mini-close {
-            background: none;
-            border: none;
-            color: #555;
-            font-size: 18px;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        .mini-app .mini-close:hover {
-            background: #1a1a1a;
-            color: #fff;
-        }
+        .mini-app .mini-content { display: flex; align-items: center; gap: 12px; flex: 1; }
+        .mini-app .mini-icon { font-size: 24px; filter: grayscale(1) brightness(0.8); }
+        .mini-app .mini-text { font-size: 11px; color: #888; line-height: 1.3; }
+        .mini-app .mini-text strong { color: #fff; font-weight: 600; }
+        .mini-app .mini-close { background: none; border: none; color: #555; font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: all 0.3s; }
+        .mini-app .mini-close:hover { background: #1a1a1a; color: #fff; }
         
-        .bot-btn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid #2a2a2a;
-            border-radius: 12px;
-            padding: 10px 16px;
-            color: #888;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-            cursor: pointer;
-            width: 100%;
-            justify-content: center;
-        }
+        .bot-btn { background: rgba(255,255,255,0.03); border: 1px solid #2a2a2a; border-radius: 12px; padding: 10px 16px; color: #888; font-size: 13px; display: flex; align-items: center; gap: 10px; transition: all 0.3s; cursor: pointer; width: 100%; justify-content: center; }
         .bot-btn:hover { background: rgba(255,255,255,0.06); border-color: #3a3a3a; }
         .bot-btn .bot-icon { filter: grayscale(1) brightness(0.8); font-size: 18px; }
         
-        .legal-footer {
-            margin-top: 24px;
-            padding: 16px;
-            border-top: 1px solid #1a1a1a;
-            text-align: center;
-        }
-        .legal-footer .legal-text {
-            font-size: 10px;
-            color: #444;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-        .legal-footer .legal-links {
+        .legal-footer { margin-top: 24px; padding: 16px; border-top: 1px solid #1a1a1a; text-align: center; }
+        .legal-footer .legal-text { font-size: 10px; color: #444; margin-bottom: 8px; line-height: 1.4; }
+        .legal-footer .legal-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .legal-footer .legal-links a { color: #666; font-size: 10px; text-decoration: none; transition: color 0.3s; border-bottom: 1px solid #2a2a2a; padding-bottom: 2px; }
+        .legal-footer .legal-links a:hover { color: #aaa; border-bottom-color: #555; }
+        
+        .video-header { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 16px; border: 1px solid #2a2a2a; position: relative; background: #0a0a0a; }
+        .video-header video { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+        .video-header .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(4px);
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .legal-footer .legal-links a {
-            color: #666;
-            font-size: 10px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
             text-decoration: none;
-            transition: color 0.3s;
-            border-bottom: 1px solid #2a2a2a;
-            padding-bottom: 2px;
         }
-        .legal-footer .legal-links a:hover {
-            color: #aaa;
-            border-bottom-color: #555;
-        }
+        .video-header .play-btn:hover { background: rgba(255,255,255,0.2); transform: translate(-50%, -50%) scale(1.05); }
     </style>
 </head>
 <body>
@@ -256,14 +178,14 @@
     <div class="bg-glow"></div>
     <div class="floating-codes" style="left:5%; animation-duration:45s;">01001110 01000101 01010100</div>
     <div class="floating-codes" style="right:8%; animation-duration:55s; animation-delay:10s;">0x7F 0xAA 0x3F</div>
-    <div class="floating-codes" style="left:20%; animation-duration:65s; animation-delay:20s;">SSH • TLS 1.3 • WireGuard</div>
+    <div class="floating-codes" style="left:20%; animation-duration:65s; animation-delay:20s;">VUME • LABS • VPN</div>
     <div class="floating-codes" style="right:25%; animation-duration:50s; animation-delay:5s;">{ "status": "online" }</div>
 
     <div id="app" class="app-container">
         <header class="flex justify-between items-center py-4 border-b border-[#1a1a1a] mb-4">
             <div class="flex items-center gap-3">
-                <span class="text-2xl font-black tracking-tight text-white">MAUE</span>
-                <span class="text-xs font-bold text-[#555] tracking-widest">PULSE</span>
+                <span class="text-2xl font-black tracking-tight text-white">VUME</span>
+                <span class="text-xs font-bold text-[#555] tracking-widest">LABS</span>
                 <span class="text-[10px] bg-[#1a1a1a] px-2 py-0.5 rounded-full text-[#555] border border-[#222]">v3.0</span>
             </div>
             <div class="flex items-center gap-3">
@@ -275,14 +197,22 @@
             </div>
         </header>
 
+        <!-- ВИДЕО-ШАПКА -->
+        <div class="video-header">
+            <video id="headerVideo" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%231a1a1a'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23333' font-family='sans-serif' font-size='20'%3EVUME LABS%3C/text%3E%3C/svg%3E">
+                <source src="https://telegra.ph/file/ваше_видео.mp4" type="video/mp4">
+            </video>
+            <a href="#" class="play-btn" id="playBtn" @click.prevent="playVideo">▶</a>
+        </div>
+
         <div class="fade-in">
             <div v-if="currentPage === 'home'">
                 <div class="card p-8 mb-6 text-center">
-                    <h1 class="text-3xl font-black tracking-tight text-white">Интернет <span class="text-[#888]">без границ</span></h1>
+                    <h1 class="text-3xl font-black tracking-tight text-white">VUME <span class="text-[#888]">Labs</span></h1>
                     <p class="text-[#555] text-sm mt-3 max-w-xs mx-auto">Анонимность. Обход блокировок. Скорость.</p>
                     <div class="flex flex-wrap justify-center gap-3 mt-6">
-                        <button @click="currentPage = 'tariffs'" class="bg-white text-black px-8 py-3 rounded-xl font-bold text-sm hover:bg-gray-200 transition">꩜ Подключиться</button>
-                        <button @click="activateTrial" class="border border-[#2a2a2a] px-6 py-3 rounded-xl text-sm text-[#777] hover:border-[#444] transition">𓋹 2 дня бесплатно</button>
+                        <button @click="currentPage = 'tariffs'" class="bg-white text-black px-8 py-3 rounded-xl font-bold text-sm hover:bg-gray-200 transition">⚡ Подключиться</button>
+                        <button @click="activateTrial" class="border border-[#2a2a2a] px-6 py-3 rounded-xl text-sm text-[#777] hover:border-[#444] transition">🎁 2 дня бесплатно</button>
                     </div>
                     <div class="flex justify-center gap-6 mt-6 text-[10px] text-[#444]">
                         <span>✓ No-Logs</span><span>✓ 256-bit</span><span>✓ Обход DPI</span>
@@ -291,13 +221,13 @@
 
                 <div class="grid grid-cols-2 gap-3 mb-6">
                     <div class="card p-4 text-center"><div class="text-xl font-bold text-white">300</div><div class="text-[10px] text-[#555]">Активных</div></div>
-                    <div class="card p-4 text-center"><div class="text-xl font-bold text-white">𓂀</div><div class="text-[10px] text-[#555]">РКН не видит</div></div>
-                    <div class="card p-4 text-center"><div class="text-xl font-bold text-white">꩜</div><div class="text-[10px] text-[#555]">Ускорение</div></div>
+                    <div class="card p-4 text-center"><div class="text-xl font-bold text-white">🔒</div><div class="text-[10px] text-[#555]">РКН не видит</div></div>
+                    <div class="card p-4 text-center"><div class="text-xl font-bold text-white">⚡</div><div class="text-[10px] text-[#555]">Ускорение</div></div>
                     <div class="card p-4 text-center"><div class="text-xl font-bold text-white">42%</div><div class="text-[10px] text-[#555]">Рефералам</div></div>
                 </div>
 
                 <div class="card p-4 border-l-2 border-[#444]">
-                    <h4 class="font-bold text-sm flex items-center gap-2"><span class="text-[#666]">𓃠</span> Модерация</h4>
+                    <h4 class="font-bold text-sm flex items-center gap-2"><span class="text-[#666]">🛡</span> Модерация</h4>
                     <p class="text-[11px] text-[#555] mt-1">3 удара — блокировка. Разблокировка через поддержку.</p>
                     <div class="flex flex-wrap gap-2 mt-2">
                         <span class="bg-[#1a1a1a] text-[#666] text-[10px] px-3 py-1 rounded-full border border-[#222]">Заблокировано: {{ blockedUsers.length }}</span>
@@ -308,7 +238,7 @@
             </div>
 
             <div v-if="currentPage === 'tariffs'">
-                <h2 class="text-xl font-bold mb-4 text-white">꩜ Тарифы</h2>
+                <h2 class="text-xl font-bold mb-4 text-white">💎 Тарифы</h2>
                 <div class="space-y-3">
                     <div v-for="plan in tariffs" :key="plan.id" class="card p-4 flex items-center justify-between hover:border-[#333] transition">
                         <div>
@@ -320,29 +250,11 @@
                         <div class="text-right">
                             <div class="text-lg font-bold text-white">{{ plan.price }} <span class="text-xs font-normal text-[#555]">₽</span></div>
                             <button @click="buyPlan(plan)" class="mt-1 bg-[#1a1a1a] hover:bg-[#222] px-4 py-1.5 rounded-lg text-xs font-medium border border-[#2a2a2a] transition text-white">Выбрать</button>
-                            <div v-if="plan.trial" class="text-[9px] text-[#666] mt-0.5">𓋹 +2 дня</div>
+                            <div v-if="plan.trial" class="text-[9px] text-[#666] mt-0.5">🎁 +2 дня</div>
                         </div>
                     </div>
                 </div>
-                <div class="text-[10px] text-[#444] text-center mt-4">⏣ Макс. 2 устройства на аккаунт</div>
-                <legal-footer></legal-footer>
-            </div>
-
-            <div v-if="currentPage === 'referral'">
-                <div class="card p-6">
-                    <h2 class="text-xl font-bold text-white">𓋴 Рефералы</h2>
-                    <p class="text-[13px] text-[#555] mt-1">Пригласи друга — получи <span class="text-white">1 день</span> бесплатно и <span class="text-white">42%</span> с каждой его оплаты навсегда.</p>
-                    <div class="bg-[#0d0d0d] p-3 rounded-xl mt-4 flex items-center justify-between border border-[#1a1a1a]">
-                        <code class="text-[#888] text-xs">maue.io/ref/{{ user.refCode }}</code>
-                        <button @click="copyRef" class="bg-[#1a1a1a] px-3 py-1.5 rounded-lg text-xs hover:bg-[#222] transition text-white">Копировать</button>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 mt-4">
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><div class="text-[10px] text-[#555]">Приглашено</div><div class="text-xl font-bold text-white">{{ user.referrals }}</div></div>
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><div class="text-[10px] text-[#555]">Заработано</div><div class="text-xl font-bold text-white">{{ user.balance }} ₽</div></div>
-                    </div>
-                    <button @click="withdrawFunds" class="w-full mt-4 bg-[#1a1a1a] hover:bg-[#222] py-3 rounded-xl font-bold text-sm border border-[#2a2a2a] transition text-white" :disabled="user.balance < 2500">𓃮 Вывести (от 2500 ₽)</button>
-                    <p class="text-[9px] text-[#444] text-center mt-2">Вывод доступен от 2500 ₽</p>
-                </div>
+                <div class="text-[10px] text-[#444] text-center mt-4">📱 Макс. 2 устройства на аккаунт</div>
                 <legal-footer></legal-footer>
             </div>
 
@@ -353,14 +265,15 @@
                         <div><h2 class="text-xl font-bold text-white">{{ user.name }}</h2><span class="text-[11px] text-[#555]">Подписка: {{ user.subscription || 'Нет' }}</span></div>
                     </div>
                     <div class="grid grid-cols-2 gap-3 mt-5">
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">𓃗 Кошелек</span><br><span class="text-lg font-bold text-white">{{ user.balance }} ₽</span></div>
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">⏣ Устройств</span><br><span class="text-lg font-bold text-white">{{ user.devices }}/2</span></div>
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">𓅓 Дней</span><br><span class="text-lg font-bold text-white">{{ user.daysLeft }}</span></div>
-                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">𓋴 Рефералов</span><br><span class="text-lg font-bold text-white">{{ user.referrals }}</span></div>
+                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">💰 Кошелек</span><br><span class="text-lg font-bold text-white">{{ user.balance }} ₽</span></div>
+                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">📱 Устройств</span><br><span class="text-lg font-bold text-white">{{ user.devices }}/2</span></div>
+                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">📅 Дней</span><br><span class="text-lg font-bold text-white">{{ user.daysLeft }}</span></div>
+                        <div class="bg-[#0d0d0d] p-3 rounded-xl border border-[#1a1a1a]"><span class="text-[10px] text-[#555]">👥 Рефералов</span><br><span class="text-lg font-bold text-white">{{ user.referrals }}</span></div>
                     </div>
                     <div class="flex gap-3 mt-4">
-                        <button @click="showDeposit = !showDeposit" class="flex-1 bg-[#1a1a1a] text-white px-4 py-2 rounded-xl text-sm hover:bg-[#222] transition border border-[#2a2a2a]">𓃗 Пополнить</button>
-                        <button @click="logout" class="flex-1 bg-[#1a1a1a] text-[#666] px-4 py-2 rounded-xl text-sm hover:bg-[#222] transition border border-[#2a2a2a]">𓃠 Выйти</button>
+                        <button @click="showDeposit = !showDeposit" class="flex-1 bg-[#1a1a1a] text-white px-4 py-2 rounded-xl text-sm hover:bg-[#222] transition border border-[#2a2a2a]">💰 Пополнить</button>
+                        <button @click="currentPage = 'instructions'" class="flex-1 bg-[#1a1a1a] text-white px-4 py-2 rounded-xl text-sm hover:bg-[#222] transition border border-[#2a2a2a]">📖 Инструкция</button>
+                        <button @click="logout" class="flex-1 bg-[#1a1a1a] text-[#666] px-4 py-2 rounded-xl text-sm hover:bg-[#222] transition border border-[#2a2a2a]">🚪 Выйти</button>
                     </div>
                     
                     <div v-if="showDeposit" class="mt-4 p-4 bg-[#0d0d0d] rounded-xl border border-[#1a1a1a]">
@@ -376,14 +289,33 @@
                 </div>
                 <legal-footer></legal-footer>
             </div>
+
+            <div v-if="currentPage === 'instructions'">
+                <div class="card p-6">
+                    <h2 class="text-xl font-bold text-white">📖 Инструкция</h2>
+                    <div class="mt-4 space-y-3 text-[13px] text-[#888]">
+                        <div><span class="text-white font-bold">Шаг 1:</span> Установи INCY или Karing</div>
+                        <div><span class="text-white font-bold">Шаг 2:</span> Нажми «Подключиться» и выбери тариф</div>
+                        <div><span class="text-white font-bold">Шаг 3:</span> Скопируй VPN-ключ из профиля</div>
+                        <div><span class="text-white font-bold">Шаг 4:</span> Вставь ключ в INCY/Karing</div>
+                        <div><span class="text-white font-bold">Шаг 5:</span> Включи VPN и наслаждайся!</div>
+                    </div>
+                    <div class="flex flex-col gap-2 mt-4">
+                        <a href="https://incy.app" target="_blank" class="bg-[#1a1a1a] hover:bg-[#222] px-4 py-2 rounded-xl text-sm text-white text-center border border-[#2a2a2a] transition">📱 Установить INCY</a>
+                        <a href="https://karing.app" target="_blank" class="bg-[#1a1a1a] hover:bg-[#222] px-4 py-2 rounded-xl text-sm text-white text-center border border-[#2a2a2a] transition">📱 Установить Karing</a>
+                    </div>
+                    <button @click="currentPage = 'home'" class="w-full mt-4 bg-[#1a1a1a] hover:bg-[#222] py-2 rounded-xl text-sm text-white border border-[#2a2a2a] transition">🔙 На главную</button>
+                </div>
+                <legal-footer></legal-footer>
+            </div>
         </div>
 
         <!-- MINI-APP -->
         <div class="mini-app" v-if="showMiniApp">
             <div class="mini-content">
-                <span class="mini-icon">𓂀</span>
+                <span class="mini-icon">🌀</span>
                 <div class="mini-text">
-                    <strong>MAUE Pulse</strong><br>
+                    <strong>VUME Labs</strong><br>
                     <span>Анонимный VPN • {{ user.daysLeft }} дней</span>
                 </div>
             </div>
@@ -392,52 +324,48 @@
 
         <div class="mt-6">
             <button @click="openBot" class="bot-btn">
-                <span class="bot-icon">𓂀</span> Наш Telegram-бот
+                <span class="bot-icon">🌀</span> Наш Telegram-бот
                 <span class="text-[10px] text-[#444]">→</span>
             </button>
         </div>
 
-        <!-- НИЖНЯЯ ПАНЕЛЬ С УНИКАЛЬНЫМИ ЭМОДЗИ -->
         <div class="bottom-nav">
             <button @click="currentPage = 'home'" :class="['nav-btn', currentPage === 'home' ? 'active' : '']">
-                <span class="icon">𓃠</span>
+                <span class="icon">⚡</span>
                 <span class="label">Главная</span>
             </button>
             <button @click="currentPage = 'tariffs'" :class="['nav-btn', currentPage === 'tariffs' ? 'active' : '']">
-                <span class="icon">꩜</span>
+                <span class="icon">💎</span>
                 <span class="label">Тарифы</span>
             </button>
-            <button @click="currentPage = 'referral'" :class="['nav-btn', currentPage === 'referral' ? 'active' : '']">
-                <span class="icon">𓋴</span>
-                <span class="label">Рефералы</span>
-            </button>
             <button @click="currentPage = 'profile'" :class="['nav-btn', currentPage === 'profile' ? 'active' : '']">
-                <span class="icon">⏣</span>
+                <span class="icon">👤</span>
                 <span class="label">Профиль</span>
             </button>
-            <button @click="openBot" class="nav-btn">
-                <span class="icon">𓂀</span>
-                <span class="label">Бот</span>
+            <button @click="currentPage = 'instructions'" :class="['nav-btn', currentPage === 'instructions' ? 'active' : '']">
+                <span class="icon">📖</span>
+                <span class="label">Инструкция</span>
+            </button>
+            <button @click="openSupport" class="nav-btn">
+                <span class="icon">🛟</span>
+                <span class="label">Поддержка</span>
             </button>
         </div>
 
         <div v-if="showPaymentModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
             <div class="card p-6 max-w-sm w-full">
-                <h3 class="text-xl font-bold text-white">𓋹 Подтверждение</h3>
+                <h3 class="text-xl font-bold text-white">Подтверждение</h3>
                 <p class="text-[#888] text-sm mt-2">Активация <span class="text-white">{{ selectedPlan?.name }}</span> за <span class="text-white">{{ selectedPlan?.price }} ₽</span></p>
                 
                 <div class="my-4 p-3 bg-[#0d0d0d] rounded-xl border border-[#1a1a1a]">
                     <p class="text-[9px] text-[#555] text-center">
-                        Нажимая «Оплатить», вы соглашаетесь с 
-                        <a href="https://telegra.ph/Politika-konfidencialnosti-06-21-31" target="_blank" class="text-[#888] hover:text-[#aaa] underline">Политикой конфиденциальности</a> 
-                        и 
-                        <a href="https://telegra.ph/Polzovatelskoe-soglashenie-04-01-19" target="_blank" class="text-[#888] hover:text-[#aaa] underline">Пользовательским соглашением</a>
+                        Нажимая «Оплатить», вы соглашаетесь с условиями
                     </p>
                 </div>
                 
                 <div class="flex gap-3 mt-2">
-                    <button @click="showPaymentModal = false" class="flex-1 bg-[#141414] py-3 rounded-xl text-sm border border-[#222] text-[#888] hover:bg-[#1a1a1a]">𓃠 Отмена</button>
-                    <button @click="confirmPayment" class="flex-1 bg-white text-black py-3 rounded-xl font-bold text-sm hover:bg-gray-200">𓋹 Оплатить</button>
+                    <button @click="showPaymentModal = false" class="flex-1 bg-[#141414] py-3 rounded-xl text-sm border border-[#222] text-[#888] hover:bg-[#1a1a1a]">❌ Отмена</button>
+                    <button @click="confirmPayment" class="flex-1 bg-white text-black py-3 rounded-xl font-bold text-sm hover:bg-gray-200">✅ Оплатить</button>
                 </div>
             </div>
         </div>
@@ -447,22 +375,7 @@
     <script>
         const { createApp, ref, reactive } = Vue;
 
-        const LegalFooter = {
-            template: `
-                <div class="legal-footer">
-                    <div class="legal-text">
-                        Нажимая «Подключиться» или «Оплатить», вы соглашаетесь с условиями
-                    </div>
-                    <div class="legal-links">
-                        <a href="https://telegra.ph/Politika-konfidencialnosti-06-21-31" target="_blank">𓃀 Политика конфиденциальности</a>
-                        <a href="https://telegra.ph/Polzovatelskoe-soglashenie-04-01-19" target="_blank">𓃀 Пользовательское соглашение</a>
-                    </div>
-                </div>
-            `
-        };
-
         const app = createApp({
-            components: { LegalFooter },
             setup() {
                 const currentPage = ref('home');
                 const showPaymentModal = ref(false);
@@ -482,14 +395,26 @@
                 });
 
                 const tariffs = ref([
-                    { id: 1, name: '꩜ Сутки', price: '6', period: '1 день', features: ['2 устройства', '100 Мбит', 'Обход DPI'], trial: false, bonus: null },
-                    { id: 2, name: '꩜ Месяц', price: '87', period: '30 дней', features: ['2 устройства', '500 Мбит', 'Безлимит'], trial: true, bonus: '+2 дня' },
-                    { id: 3, name: '꩜ 3 месяца', price: '220', period: '90 дней', features: ['2 устройства', '1 Гбит', 'Приоритет'], trial: false, bonus: null },
-                    { id: 4, name: '꩜ 6 месяцев', price: '480', period: '180 дней', features: ['2 устройства', '1 Гбит', 'Приоритет'], trial: false, bonus: null },
-                    { id: 5, name: '꩜ Год', price: '996', period: '365 дней', features: ['2 устройства', 'Макс. скорость', 'VIP'], trial: false, bonus: '🔥' },
+                    { id: 1, name: '🌙 Сутки', price: '6', period: '1 день', features: ['2 устройства', '100 Мбит', 'Обход DPI'], trial: false, bonus: null },
+                    { id: 2, name: '📅 Месяц', price: '87', period: '30 дней', features: ['2 устройства', '500 Мбит', 'Безлимит'], trial: true, bonus: '+2 дня' },
+                    { id: 3, name: '📆 3 месяца', price: '220', period: '90 дней', features: ['2 устройства', '1 Гбит', 'Приоритет'], trial: false, bonus: null },
+                    { id: 4, name: '🗓 6 месяцев', price: '480', period: '180 дней', features: ['2 устройства', '1 Гбит', 'Приоритет'], trial: false, bonus: null },
+                    { id: 5, name: '🌟 Год', price: '996', period: '365 дней', features: ['2 устройства', 'Макс. скорость', 'VIP'], trial: false, bonus: '🔥' },
                 ]);
 
                 const blockedUsers = ref(['user_42', 'spammer_007']);
+
+                function playVideo() {
+                    const video = document.getElementById('headerVideo');
+                    const btn = document.getElementById('playBtn');
+                    if (video.paused) {
+                        video.play();
+                        btn.style.display = 'none';
+                    } else {
+                        video.pause();
+                        btn.style.display = 'flex';
+                    }
+                }
 
                 function buyPlan(plan) {
                     if (user.devices >= 2) {
@@ -509,7 +434,7 @@
                     user.daysLeft += parseInt(selectedPlan.value.period.split(' ')[0]) + bonusDays;
                     user.subscription = selectedPlan.value.name;
                     user.devices = 2;
-                    alert(`✅ Тариф "${selectedPlan.value.name}" активирован!\n𓋹 Бонус: +${bonusDays} дней`);
+                    alert(`✅ Тариф "${selectedPlan.value.name}" активирован!\n🎁 Бонус: +${bonusDays} дней`);
                     showPaymentModal.value = false;
                 }
 
@@ -521,12 +446,12 @@
                     user.daysLeft = 2;
                     user.subscription = 'Пробный';
                     user.devices = 1;
-                    alert('𓋹 Пробный период на 2 дня активирован!');
+                    alert('🎁 Пробный период на 2 дня активирован!');
                 }
 
                 function deposit(amount) {
                     user.balance += amount;
-                    alert(`𓃗 Баланс пополнен на ${amount} ₽`);
+                    alert(`💰 Баланс пополнен на ${amount} ₽`);
                     showDeposit.value = false;
                 }
 
@@ -541,8 +466,8 @@
                 }
 
                 function copyRef() {
-                    navigator.clipboard?.writeText(`maue.io/ref/${user.refCode}`);
-                    alert('𓋴 Ссылка скопирована!');
+                    navigator.clipboard?.writeText(`vume.io/ref/${user.refCode}`);
+                    alert('🔗 Ссылка скопирована!');
                 }
 
                 function withdrawFunds() {
@@ -550,22 +475,26 @@
                         alert('❌ Минимум 2500 ₽');
                         return;
                     }
-                    alert(`𓃮 Заявка на ${user.balance} ₽ отправлена.`);
+                    alert(`💸 Заявка на ${user.balance} ₽ отправлена.`);
                     user.balance = 0;
                 }
 
                 function blockRandomUser() {
                     const newBlock = `user_${Math.floor(Math.random() * 1000)}`;
                     blockedUsers.value.push(newBlock);
-                    alert(`𓃠 ${newBlock} заблокирован. Разблокировка — в поддержке.`);
+                    alert(`🚫 ${newBlock} заблокирован. Разблокировка — в поддержке.`);
                 }
 
                 function openBot() {
-                    window.open('https://t.me/MAUEPulseBot', '_blank');
+                    window.open('https://t.me/VUMELabsBot', '_blank');
+                }
+
+                function openSupport() {
+                    window.open('https://t.me/vumelabsagent_bot', '_blank');
                 }
 
                 function logout() {
-                    alert('𓃠 Выход.');
+                    alert('👋 Выход.');
                     user.name = 'Гость';
                     user.daysLeft = 0;
                 }
@@ -580,6 +509,7 @@
                     user,
                     tariffs,
                     blockedUsers,
+                    playVideo,
                     buyPlan,
                     confirmPayment,
                     activateTrial,
@@ -589,6 +519,7 @@
                     withdrawFunds,
                     blockRandomUser,
                     openBot,
+                    openSupport,
                     logout,
                 };
             }
